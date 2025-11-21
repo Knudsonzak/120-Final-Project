@@ -31,7 +31,6 @@ body {
     background: var(--nav-bg);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    padding: 1.5rem 0;
 }
 
 .nav-container {
@@ -45,17 +44,15 @@ body {
 
 /* Logo */
 .logo-border {
-    border: 2px solid var(--text-white);
     padding: 0.5rem 1.2rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     transition: all 0.3s ease;
 }
-
-.logo-border:hover {
-    border-color: var(--primary-color);
-    transform: scale(1.05);
+.logo-border img {
+    height: 60px;
+    width: auto;
 }
 
 .logo-text {
@@ -183,7 +180,6 @@ body {
     font-size: 3rem;
     font-weight: 400;
     color: var(--text-white);
-    margin-bottom: 0.5rem;
     animation: fadeInUp 1.2s ease 0.2s backwards;
 }
 
@@ -193,8 +189,17 @@ body {
     font-weight: 700;
     letter-spacing: 15px;
     color: var(--text-white);
-    margin-bottom: 2.5rem;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1.2s ease 0.4s backwards;
+}
+
+.hero-footer {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    padding-bottom: 2rem;
+    font-weight: 300;
+    color: var(--text-white);
     animation: fadeInUp 1.2s ease 0.4s backwards;
 }
 
