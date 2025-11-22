@@ -132,11 +132,16 @@ body {
 }
 
 /* Hamburger Menu */
+.menu-toggle {
+    display: none;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .hamburger span {
@@ -144,6 +149,18 @@ body {
     height: 2px;
     background: var(--text-white);
     transition: all 0.3s ease;
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle:checked + .hamburger span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* Hero Section */
@@ -267,94 +284,11 @@ body {
     }
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .nav-menu {
-        gap: 1.5rem;
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
     }
-
-    .nav-link {
-        font-size: 0.8rem;
-    }
-
-    .hero-title {
-        font-size: 4.5rem;
-        letter-spacing: 10px;
-    }
-
-    .hero-welcome {
-        font-size: 2.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-container {
-        padding: 0 2rem;
-    }
-
-    .nav-menu {
-        display: none;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .social-icons {
-        display: none;
-    }
-
-    .hero-title {
-        font-size: 3rem;
-        letter-spacing: 8px;
-    }
-
-    .hero-welcome {
-        font-size: 2rem;
-    }
-
-    .slide-arrow {
-        font-size: 2rem;
-        padding: 0.5rem;
-    }
-
-    .slide-left {
-        left: 1rem;
-    }
-
-    .slide-right {
-        right: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-container {
-        padding: 0 1rem;
-    }
-
-    .logo-text {
-        font-size: 1.2rem;
-    }
-
-    .logo-subtext {
-        font-size: 0.5rem;
-    }
-
-    .hero-title {
-        font-size: 2rem;
-        letter-spacing: 5px;
-    }
-
-    .hero-welcome {
-        font-size: 1.5rem;
-    }
-
-    .menu-button {
-        padding: 0.8rem 2rem;
-        font-size: 0.8rem;
-    }
-
-    .slide-indicators {
-        bottom: 2rem;
+    to {
+        transform: translateY(0);
     }
 }
