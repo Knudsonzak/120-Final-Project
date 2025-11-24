@@ -71,6 +71,71 @@
     .slide-right {
         right: 1rem;
     }
+
+    /* About Us Section - Mobile */
+    .about-us {
+        height: auto;
+        padding: 4rem 1rem;
+    }
+
+    .about-us h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .sectOne {
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .sectOne p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .about-us-content {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
+    .sectTwo,
+    .sectThree,
+    .sectFour,
+    .sectFive {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .sectTwo img,
+    .sectFive img {
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .sectThree h2,
+    .sectFour h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .sectThree p,
+    .sectFour p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .sectThree .menu-button,
+    .sectFour .menu-button {
+        width: 100%;
+        text-align: center;
+        padding: 1rem 2rem;
+        font-size: 0.85rem;
+    }
     }
 
 @media (max-width: 480px) {
@@ -102,5 +167,55 @@
 
     .slide-indicators {
         bottom: 2rem;
+    }
+
+    /* About Us Section - Small Mobile */
+    .about-us {
+        padding: 3rem 0.5rem;
+    }
+
+    .about-us h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-us h2::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    .sectOne {
+        padding: 0 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .sectOne p {
+        font-size: 0.85rem;
+    }
+
+    .about-us-content {
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .sectTwo img,
+    .sectFive img {
+        max-height: 250px;
+    }
+
+    .sectThree h2,
+    .sectFour h2 {
+        font-size: 1.4rem;
+    }
+
+    .sectThree p,
+    .sectFour p {
+        font-size: 0.85rem;
+    }
+
+    .sectThree .menu-button,
+    .sectFour .menu-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.75rem;
     }
 }
