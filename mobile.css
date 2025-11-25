@@ -85,7 +85,53 @@
 
     .sectOne {
         padding: 0 1rem;
-        margin-bottom: 2rem;
+    }
+
+    .intro-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .feature-box {
+        padding: 1.5rem;
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+    }
+
+    .feature-box h3 {
+        font-size: 1.3rem;
+    }
+
+    .feature-box p {
+        font-size: 0.9rem;
+    }
+
+    .about-stats {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .stat-divider {
+        width: 60px;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
     }
 
     .sectOne p {
@@ -186,11 +232,44 @@
 
     .sectOne {
         padding: 0 0.5rem;
-        margin-bottom: 1.5rem;
     }
 
-    .sectOne p {
+    .intro-text {
+        font-size: 0.9rem;
+    }
+
+    .about-features {
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .feature-box {
+        padding: 1.2rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .feature-box h3 {
+        font-size: 1.2rem;
+    }
+
+    .feature-box p {
         font-size: 0.85rem;
+    }
+
+    .about-stats {
+        gap: 1.5rem;
+        padding: 1.5rem 0.5rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
     }
 
     .about-us-content {
