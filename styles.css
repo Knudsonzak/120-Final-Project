@@ -108,6 +108,38 @@ body {
     width: 100%;
 }
 
+/* Cart Icon */
+.cart-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.cart-icon svg {
+    transition: transform 0.3s ease;
+}
+
+.cart-icon:hover svg {
+    transform: scale(1.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--primary-color);
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 600;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Social Icons */
 .social-icons {
     display: flex;
@@ -485,7 +517,7 @@ body {
     background-color: rgba(20, 20, 20, 0.9);
     padding: 1rem 1.5rem;
     border-radius: 15px;
-    box-shadow: 0 0 50px rgba(255, 237, 133, 0.794);
+    box-shadow: 0 0 50px rgba(255, 237, 133, 0.304);
     max-width: 400px;
     width: 90%;
     top: 6.5%;
@@ -510,6 +542,13 @@ body {
 }
 .login-container p a:hover {
     color: rgba(255, 237, 133, 0.49);
+}
+
+.login-info {
+    z-index: 10;
+}
+.login-info p {
+    animation: fadeInUp 1.9s;
 }
 
 .login-form {
@@ -580,6 +619,13 @@ body {
 .signup-form input:focus {
     border-color: #fff;
     box-shadow: 0 0 10px var(--primary-color);
+}
+
+.signup-info {
+    z-index: 10;
+}
+.signup-info p {
+    animation: fadeInUp 1.9s;
 }
 
 .signup-btn {
