@@ -88,17 +88,20 @@ function updateNavigation() {
     const loginItem = document.querySelector('.login-item');
     const signupItem = document.querySelector('.signup-item');
     const signoutItem = document.querySelector('.signout-item');
+    const cartIcon = document.querySelector('.cart-icon');
     
     if (currentUser) {
         // User is logged in 
         if (loginItem) loginItem.style.display = 'none';
         if (signupItem) signupItem.style.display = 'none';
         if (signoutItem) signoutItem.style.display = 'block';
+        if (cartIcon) cartIcon.style.display = 'block';
     } else {
         // User is not logged in 
         if (loginItem) loginItem.style.display = 'block';
         if (signupItem) signupItem.style.display = 'block';
         if (signoutItem) signoutItem.style.display = 'none';
+        if (cartIcon) cartIcon.style.display = 'none';
     }
 }
 
