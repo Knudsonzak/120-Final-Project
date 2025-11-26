@@ -15,6 +15,17 @@
     .hero-welcome {
         font-size: 2.5rem;
     }
+
+    /* Login/Signup */
+    .login-container {
+        max-width: 500px;
+        padding: 2rem;
+    }
+
+    .login-info,
+    .signup-info {
+        max-width: 500px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -72,7 +83,7 @@
         right: 1rem;
     }
 
-    /* About Us Section - Mobile */
+    /* About Us Section */
     .about-us {
         height: auto;
         padding: 4rem 1rem;
@@ -182,7 +193,35 @@
         padding: 1rem 2rem;
         font-size: 0.85rem;
     }
+
+    /* Login/Signup - Medium Mobile */
+    .login-container {
+        width: 90%;
+        max-width: 450px;
+        padding: 2rem 1.5rem;
+        top: 5%;
     }
+
+    .login-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .login-info,
+    .signup-info {
+        display: none;
+    }
+
+    .login-form input {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+
+    .login-btn,
+    .signup-btn {
+        padding: 0.9rem;
+        font-size: 1rem;
+    }
+}
 
 @media (max-width: 480px) {
     .nav-container {
@@ -296,5 +335,53 @@
     .sectFour .menu-button {
         padding: 0.8rem 1.5rem;
         font-size: 0.75rem;
+    }
+
+    /* Login/Signup */
+    .login-container {
+        width: 95%;
+        max-width: 100%;
+        padding: 1.5rem 1rem;
+        top: 3%;
+        margin: 0 auto;
+    }
+
+    .login-container h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .login-info,
+    .signup-info {
+        display: none;
+    }
+
+    .hero {
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .login-form {
+        gap: 0.8rem;
+    }
+
+    .login-form input {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .login-btn,
+    .signup-btn {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .login-container p {
+        font-size: 0.85rem;
+    }
+
+    .error-message {
+        font-size: 0.85rem;
     }
 }
