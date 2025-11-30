@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="mobile.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image" href="Images/logo.png">
-    <title>The Food of Gods - AMBROSIA</title>
+    <title>Menu - AMBROSIA</title>
+    
 </head>
-<body>
+<body class="menu-page">
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -47,10 +45,23 @@
             </ul>
         </div>
     </nav>
-
-    <section class="hero">
-        <div class="hero-overlay"></div>
-    </section>
+    <div class="hero">
+        <div class="menu-head">
+            <h2>MENU</h2>
+            <p>SEE OUR DELICIOUS OFFERINGS</p>
+        </div>
+        <div class="menu-category">
+            <button class="category-btn active" data-category="all">ALL</button>
+            <button class="category-btn" data-category="starters">STARTERS</button>
+            <button class="category-btn" data-category="mains">MAINS</button>
+            <button class="category-btn" data-category="desserts">DESSERTS</button>
+            <button class="category-btn" data-category="beverages">BEVERAGES</button>
+            
+        </div>
+        <div class="menu-items" id="menu-items">
+            <!-- Menu items will be dynamically inserted here -->
+        </div>
+    </div>
     
     <script src="script.js"></script>
 </body>
