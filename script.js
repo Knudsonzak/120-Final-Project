@@ -2,7 +2,7 @@ const API_BASE = 'http://localhost:3000';
 // API URL Configuration - Change this when deploying to Render
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:3000' 
-    : 'https://your-app-name.onrender.com'; // Replace with your Render URL
+    : 'https://ambrosia-zxd3.onrender.com';
 
 // Sign up 
 const signupForm = document.getElementById('signup-form');
