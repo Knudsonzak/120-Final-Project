@@ -13,18 +13,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// Serve static files (HTML, CSS, JS, images)
-app.use(express.static(__dirname));
-
-// API health check endpoint
-app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: 'Server is running!', 
-        message: 'AMBROSIA Restaurant API',
-        endpoints: ['/signup', '/login', '/cart', '/saveMenuItem', '/deleteMenuItem']
-    });
-});
-
 // Account Data
 const usersFile = path.join(__dirname, 'users.json');
 const cartsFile = path.join(__dirname, 'carts.json');
@@ -163,6 +151,18 @@ app.get('/cart/:email', (req, res) => {
     const cart = carts[email] || [];
     res.json({ cart });
 });
+
+// API health check endpoint
+app.get('/api/health', (req, res) => {
+    res.json({ 
+        status: 'Server is running!', 
+        message: 'AMBROSIA Restaurant API',
+        endpoints: ['/signup', '/login', '/cart', '/saveMenuItem', '/deleteMenuItem']
+    });
+});
+
+// Serve static files AFTER API routes
+app.use(express.static(__dirname));
 
 // Start the server - must be at the end after all routes are defined
 app.listen(PORT, () => {
