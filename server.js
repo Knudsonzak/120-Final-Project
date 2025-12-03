@@ -16,9 +16,13 @@ app.use((req, res, next) => {
 // Serve static files (HTML, CSS, JS, images)
 app.use(express.static(__dirname));
 
-// Root route - serve index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+// API health check endpoint
+app.get('/api/health', (req, res) => {
+    res.json({ 
+        status: 'Server is running!', 
+        message: 'AMBROSIA Restaurant API',
+        endpoints: ['/signup', '/login', '/cart', '/saveMenuItem', '/deleteMenuItem']
+    });
 });
 
 // Account Data
