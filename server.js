@@ -13,17 +13,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// Root route for server status
-app.get('/', (req, res) => {
-    res.json({ 
-        status: 'Server is running!', 
-        message: 'AMBROSIA Restaurant API',
-        endpoints: ['/signup', '/login', '/cart', '/saveMenuItem', '/deleteMenuItem']
-    });
-});
+// Serve static files (HTML, CSS, JS, images)
+app.use(express.static(__dirname));
 
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+// Root route - serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Account Data
@@ -163,4 +158,9 @@ app.get('/cart/:email', (req, res) => {
     const email = req.params.email;
     const cart = carts[email] || [];
     res.json({ cart });
+});
+
+// Start the server - must be at the end after all routes are defined
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
 });
