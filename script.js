@@ -76,7 +76,25 @@ if (loginForm) {
             }
 
             localStorage.setItem('currentUser', JSON.stringify(data.user));
-            // Cart is now managed by server, no need to store locally
+            
+            // Handle guest cart on login
+            const guestCart = localStorage.getItem('guestCart');
+            if (guestCart) {
+                const guestItems = JSON.parse(guestCart);
+                const serverCart = data.cart || [];
+                
+                // Only use guest cart if server cart is empty
+                if (serverCart.length === 0 && guestItems.length > 0) {
+                    // Save guest cart to server
+                    fetch(`${API_URL}/cart`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: data.user.email, cart: guestItems })
+                    }).catch(err => console.error('Error syncing cart:', err));
+                }
+                // Clear guest cart
+                localStorage.removeItem('guestCart');
+            }
 
             errorDiv.textContent = 'Login successful! Redirecting...';
             errorDiv.style.color = '#4CAF50';
@@ -140,7 +158,7 @@ updateNavigation();
 function getCart() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
     if (currentUser && currentUser.email) {
-        // Fetch cart from server
+        // Fetch cart from server for logged-in users
         return fetch(`${API_URL}/cart/${encodeURIComponent(currentUser.email)}`)
             .then(res => res.json())
             .then(data => data.cart || [])
@@ -149,18 +167,24 @@ function getCart() {
                 return [];
             });
     }
-    return Promise.resolve([]);
+    // Use localStorage for guest users
+    const guestCart = localStorage.getItem('guestCart');
+    return Promise.resolve(guestCart ? JSON.parse(guestCart) : []);
 }
 
 function saveCart(cart) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
     if (currentUser && currentUser.email) {
+        // Save to server for logged-in users
         fetch(`${API_URL}/cart`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: currentUser.email, cart })
         })
         .catch(err => console.error('Error saving cart to server:', err));
+    } else {
+        // Save to localStorage for guest users
+        localStorage.setItem('guestCart', JSON.stringify(cart));
     }
 }
 
