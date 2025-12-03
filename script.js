@@ -1,3 +1,9 @@
+const API_BASE = 'http://localhost:3000';
+// API URL Configuration - Change this when deploying to Render
+const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:3000' 
+    : 'https://your-app-name.onrender.com'; // Replace with your Render URL
+
 // Sign up 
 const signupForm = document.getElementById('signup-form');
 if (signupForm) {
@@ -10,33 +16,21 @@ if (signupForm) {
         const errorDiv = document.getElementById('signup-error');
         
         // Clear localStorage !!!!!REMOVE AFTER TESTING!!!!!
-        // localStorage.clear();
-        
-        // Get existing users or initialize empty array
-        let users = JSON.parse(localStorage.getItem('users')) || [];
-        
-
-        // Check if email exists
-        const existingUser = users.find(user => user.email === email);
-        if (existingUser) {
-            errorDiv.textContent = 'Email already registered. Please log in.';
-            errorDiv.style.color = '#ff6b6b';
-            errorDiv.style.marginTop = '1rem';
-            return;
-        }
-        
-        // Add user to array
-        users.push({
-            name: name,
-            email: email,
-            password: password
-        });
-        console.log(users);
-        
-        // Save to localStorage
-        localStorage.setItem('users', JSON.stringify(users));
+        //localStorage.clear();
         
         //  success message
+        errorDiv.textContent = '';
+
+        fetch(`${API_URL}/signup`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
+        })
+        .then(async response => {
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Signup failed');
+            }
         errorDiv.textContent = 'Account created successfully! Redirecting to login...';
         errorDiv.style.color = '#4CAF50';
         errorDiv.style.marginTop = '1rem';
@@ -45,45 +39,58 @@ if (signupForm) {
         setTimeout(() => {
             window.location.href = 'log-in.html';
         }, 2000);
+        })
+        .catch(err => {
+            errorDiv.textContent = err.message;
+            errorDiv.style.color = '#ff6b6b';
+            errorDiv.style.marginTop = '1rem';
+        });
     });
 }
 
 // Log in 
 const loginForm = document.getElementById('login-form');
 if (loginForm) {
+    console.log('Login form found');
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        console.log('Login form submitted');
         
-        const nameOrEmail = document.getElementById('name').value;
+        const nameOrEmail = document.getElementById('nameOrEmail').value;
         const password = document.getElementById('password').value;
         const errorDiv = document.getElementById('login-error');
-        
-        // Get users from localStorage
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        
-        // Find user by email OR name
-        const user = users.find(u => 
-            (u.email === nameOrEmail || u.name === nameOrEmail) && u.password === password
-        );
-        
-        if (user) {
-            // Save user info
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            
+        errorDiv.textContent = '';
+
+        console.log('Attempting login with:', nameOrEmail);
+
+        fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nameOrEmail, password })
+        })
+        .then(async response => {
+            console.log('Response received:', response.status);
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed');
+            }
+
+            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            // Cart is now managed by server, no need to store locally
+
             errorDiv.textContent = 'Login successful! Redirecting...';
             errorDiv.style.color = '#4CAF50';
             errorDiv.style.marginTop = '1rem';
-            
-            // Redirect to home 
+
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 1500);
-
-        } else {
-            errorDiv.textContent = 'Invalid username/email or password. Please try again.';
+        })
+        .catch(err => {
+            errorDiv.textContent = err.message;
             errorDiv.style.color = '#ff6b6b';
             errorDiv.style.marginTop = '1rem';
-        }
+        });
     });
 }
 
@@ -106,7 +113,7 @@ function updateNavigation() {
         if (loginItem) loginItem.style.display = 'block';
         if (signupItem) signupItem.style.display = 'block';
         if (signoutItem) signoutItem.style.display = 'none';
-        if (cartIcon) cartIcon.style.display = 'none';
+        if (cartIcon) cartIcon.style.display = 'block';
     }
 
     if (isAdmin()) {
@@ -129,35 +136,54 @@ if (signoutBtn) {
 }
 updateNavigation();
 
-console.table(JSON.parse(localStorage.getItem('users')))
-
 // Cart functionality
 function getCart() {
-    return JSON.parse(localStorage.getItem('cart')) || [];
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (currentUser && currentUser.email) {
+        // Fetch cart from server
+        return fetch(`${API_URL}/cart/${encodeURIComponent(currentUser.email)}`)
+            .then(res => res.json())
+            .then(data => data.cart || [])
+            .catch(err => {
+                console.error('Error fetching cart:', err);
+                return [];
+            });
+    }
+    return Promise.resolve([]);
 }
 
 function saveCart(cart) {
-    localStorage.setItem('cart', JSON.stringify(cart));
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if (currentUser && currentUser.email) {
+        fetch(`${API_URL}/cart`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentUser.email, cart })
+        })
+        .catch(err => console.error('Error saving cart to server:', err));
+    }
 }
 
 function updateCartCount() {
-    const cart = getCart();
-    const count = cart.reduce((sum, it) => sum + (it.qty || 1), 0);
-    const badges = document.querySelectorAll('.cart-count');
-    badges.forEach(b => b.textContent = count);
+    getCart().then(cart => {
+        const count = cart.reduce((sum, it) => sum + (it.qty || 1), 0);
+        const badges = document.querySelectorAll('.cart-count');
+        badges.forEach(b => b.textContent = count);
+    });
 }
 
 function addToCart(item) {
-    const cart = getCart();
-    const existing = cart.find(i => i.name === item.name && i.price === item.price);
-    if (existing) {
-        existing.qty = (existing.qty || 1) + 1;
-    } else {
-        item.qty = 1;
-        cart.push(item);
-    }
-    saveCart(cart);
-    updateCartCount();
+    return getCart().then(cart => {
+        const existing = cart.find(i => i.name === item.name && i.price === item.price);
+        if (existing) {
+            existing.qty = (existing.qty || 1) + 1;
+        } else {
+            item.qty = 1;
+            cart.push(item);
+        }
+        saveCart(cart);
+        updateCartCount();
+    });
 }
 
 // Menu filtering + cart button injection
@@ -213,9 +239,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     desc: descEl ? descEl.textContent.trim() : '',
                     price: priceEl.textContent.trim()
                 };
-                addToCart(item);
-                btn.textContent = 'Added!';
-                setTimeout(() => btn.textContent = 'Add to Cart', 900);
+                btn.textContent = 'Adding...';
+                addToCart(item).then(() => {
+                    btn.textContent = 'Added!';
+                    setTimeout(() => btn.textContent = 'Add to Cart', 900);
+                });
             });
 
             mi.appendChild(btn);
@@ -238,20 +266,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Render cart on checkout page
 function renderCart() {
-    const cart = getCart();
     const container = document.getElementById('cart-contents');
     const totalEl = document.getElementById('cart-total');
     if (!container) return;
     
-    container.innerHTML = '';
-    if (cart.length === 0) {
-        container.innerHTML = '<p style="color:#ddd;">Your cart is empty.</p>';
-        if (totalEl) totalEl.textContent = '$0.00';
-        return;
-    }
+    getCart().then(cart => {
+        container.innerHTML = '';
+        if (cart.length === 0) {
+            container.innerHTML = '<p style="color:#ddd;">Your cart is empty.</p>';
+            if (totalEl) totalEl.textContent = '$0.00';
+            return;
+        }
 
-    let total = 0;
-    cart.forEach((it, idx) => {
+        let total = 0;
+        cart.forEach((it, idx) => {
         const row = document.createElement('div');
         row.className = 'cart-row';
         
@@ -271,44 +299,32 @@ function renderCart() {
         remove.type = 'button';
         remove.textContent = 'Remove';
         remove.addEventListener('click', () => {
-            const current = getCart();
-            current.splice(idx, 1);
-            saveCart(current);
-            renderCart();
-            updateCartCount();
+            getCart().then(current => {
+                current.splice(idx, 1);
+                saveCart(current);
+                renderCart();
+                updateCartCount();
+            });
         });
 
         row.appendChild(name);
         row.appendChild(price);
         row.appendChild(remove);
         container.appendChild(row);
-    });
+        });
 
-    if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
+        if (totalEl) totalEl.textContent = '$' + total.toFixed(2);
+    });
 }
 
 function clearCart() {
-    localStorage.removeItem('cart');
+    saveCart([]);
     updateCartCount();
     renderCart();
 }
 
-/* Temporary ADMIN Account for testing */
-(function createAdminAccount() {
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    const adminExists = users.find(u => u.email === "admin@ambrosia.com");
-    if (!adminExists) {
-        users.push({
-            name: "Admin",
-            email: "admin@ambrosia.com",
-            password: "admin123",
-            role: "admin"
-        });
-        localStorage.setItem("users", JSON.stringify(users));
-    }
-})();
-
 /* ADMIN Controls */
+
 /* Check if current user is admin */
 function isAdmin() {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -331,7 +347,7 @@ document.addEventListener('click', e => {
             return;
         }
 
-        fetch("http://localhost:3000/saveMenuItem", {
+        fetch(`${API_URL}/saveMenuItem`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newItem)
@@ -357,7 +373,7 @@ document.addEventListener('click', e => {
 
         console.log("Deleting item with ID:", idToDelete);
 
-        fetch("http://localhost:3000/deleteMenuItem", {
+        fetch(`${API_URL}/deleteMenuItem`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ id: idToDelete })
@@ -380,6 +396,11 @@ function loadMenu(category = "all") {
             localStorage.setItem("menuItems", JSON.stringify(menuItems));
 
             const menuContainer = document.getElementById("menu-items");
+
+            if (!menuContainer) {
+                return;
+            }
+            
             menuContainer.innerHTML = "";
 
             const filtered = category === "all" ? menuItems : menuItems.filter(item => item.category === category);
@@ -425,9 +446,11 @@ function loadMenu(category = "all") {
                             desc: btn.dataset.desc,
                             price: '$' + btn.dataset.price
                         };
-                        addToCart(item);
-                        btn.textContent = 'Added!';
-                        setTimeout(() => btn.textContent = 'Add to Cart', 900);
+                        btn.textContent = 'Adding...';
+                        addToCart(item).then(() => {
+                            btn.textContent = 'Added!';
+                            setTimeout(() => btn.textContent = 'Add to Cart', 900);
+                        });
                     });
                 });
             }

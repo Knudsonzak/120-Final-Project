@@ -1,1 +1,93 @@
-[]
+[
+  {
+    "id": 1764776706838,
+    "name": "BBQ Ribs",
+    "desc": "Slow-smoked pork ribs glazed with tangy barbecue sauce",
+    "price": 22,
+    "category": "mains"
+  },
+  {
+    "id": 1764776728773,
+    "name": "Mac & Cheese Bake",
+    "desc": "Creamy macaroni with cheddar, baked until bubbly and golden",
+    "price": 11,
+    "category": "mains"
+  },
+  {
+    "id": 1764776750124,
+    "name": "French Fries ",
+    "desc": "Crispy golden potatoes, served with ketchup",
+    "price": 5,
+    "category": "starters"
+  },
+  {
+    "id": 1764776766061,
+    "name": "Coleslaw",
+    "desc": "Creamy cabbage slaw with a hint of vinegar",
+    "price": 5,
+    "category": "starters"
+  },
+  {
+    "id": 1764776780317,
+    "name": "Cornbread",
+    "desc": "Sweet, buttery cornbread baked fresh",
+    "price": 6,
+    "category": "starters"
+  },
+  {
+    "id": 1764776810016,
+    "name": "Green Bean Casserole",
+    "desc": "Classic side with mushrooms and crispy onions",
+    "price": 10,
+    "category": "starters"
+  },
+  {
+    "id": 1764776855991,
+    "name": "Apple Pie",
+    "desc": "Flaky crust filled with cinnamon-spiced apples, served warm with vanilla ice cream",
+    "price": 7,
+    "category": "desserts"
+  },
+  {
+    "id": 1764776876307,
+    "name": "Brownies à la Mode",
+    "desc": "Rich chocolate brownies topped with ice cream and fudge sauce",
+    "price": 8,
+    "category": "desserts"
+  },
+  {
+    "id": 1764776896860,
+    "name": "Banana Pudding",
+    "desc": "Layers of vanilla wafers, bananas, and whipped cream",
+    "price": 7,
+    "category": "desserts"
+  },
+  {
+    "id": 1764776935132,
+    "name": "Craft Beer Selection",
+    "desc": "Local brews on tap",
+    "price": 5,
+    "category": "beverages"
+  },
+  {
+    "id": 1764776951785,
+    "name": "Milkshakes",
+    "desc": "Chocolate, vanilla, or strawberry, topped with whipped cream",
+    "price": 7,
+    "category": "beverages"
+  },
+  {
+    "id": 1764777100743,
+    "name": "Fountain sodas",
+    "desc": "Coke, Diet Coke, Root Beer, Dr. Pepper, Sprite",
+    "price": 2.5,
+    "category": "beverages"
+  },
+  {
+    "id": 1764781221622,
+    "name": "pepsi",
+    "desc": "soda",
+    "price": 50,
+    "category": "beverages"
+  }
+]
