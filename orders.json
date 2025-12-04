@@ -142,5 +142,25 @@
     "scheduledTime": "2025-12-06T13:17",
     "orderDate": "2025-12-04T18:17:55.790Z",
     "status": "cancelled"
+  },
+  {
+    "id": 1764881101205,
+    "email": "zakknudson6@gmail.com",
+    "name": "Zak Knudson",
+    "items": [
+      {
+        "name": "Mac & Cheese Bake",
+        "desc": "Creamy macaroni with cheddar, baked until bubbly and golden",
+        "price": "$11.00",
+        "qty": 1
+      }
+    ],
+    "subtotal": 11,
+    "tip": 0,
+    "total": 11,
+    "paymentMethod": "cash",
+    "scheduledTime": null,
+    "orderDate": "2025-12-04T20:45:01.205Z",
+    "status": "confirmed"
   }
 ]

@@ -383,7 +383,7 @@ function clearCart() {
 
 /* Check if current user is admin */
 function isAdmin() {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
     return currentUser && currentUser.role === "admin";
 }
 /* Add Menu Item */
