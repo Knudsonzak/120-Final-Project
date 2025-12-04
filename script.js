@@ -87,7 +87,7 @@ if (loginForm) {
                 throw new Error(data.message || 'Login failed');
             }
 
-            localStorage.setItem('currentUser', JSON.stringify(data.user));
+            sessionStorage.setItem('currentUser', JSON.stringify(data.user));
             
             // Handle guest cart on login
             const guestCart = localStorage.getItem('guestCart');
@@ -126,7 +126,7 @@ if (loginForm) {
 
 // Check authentication and update nav
 function updateNavigation() {
-    const currentUser = localStorage.getItem('currentUser');
+    const currentUser = sessionStorage.getItem('currentUser');
     const loginItem = document.querySelector('.login-item');
     const signupItem = document.querySelector('.signup-item');
     const signoutItem = document.querySelector('.signout-item');
@@ -177,7 +177,7 @@ if (signoutBtn) {
     signoutBtn.addEventListener('click', function(e) {
         e.preventDefault();
         
-        localStorage.removeItem('currentUser');
+        sessionStorage.removeItem('currentUser');
     
         updateNavigation();
         
@@ -188,7 +188,7 @@ updateNavigation();
 
 // Cart functionality
 function getCart() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     if (currentUser && currentUser.email) {
         // Fetch cart from server for logged-in users
         return fetch(`${API_URL}/cart/${encodeURIComponent(currentUser.email)}`)
@@ -205,7 +205,7 @@ function getCart() {
 }
 
 function saveCart(cart) {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     if (currentUser && currentUser.email) {
         // Save to server for logged-in users
         fetch(`${API_URL}/cart`, {
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Inject Add to Cart buttons on menu items (only if logged in)
-    const currentUser = localStorage.getItem('currentUser');
+    const currentUser = sessionStorage.getItem('currentUser');
     if (currentUser) {
         const menuItems = document.querySelectorAll('.item');
         menuItems.forEach(mi => {
@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
 const proceedCheckoutBtn = document.getElementById('proceed-checkout');
 if (proceedCheckoutBtn) {
     proceedCheckoutBtn.addEventListener('click', function() {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+        const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
         if (!currentUser) {
             // Guest can proceed
             window.location.href = 'checkout.html';
@@ -562,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const customTip = document.getElementById('custom-tip');
     const checkoutError = document.getElementById('checkout-error');
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
 
     // Setup form based on login status
     if (currentUser) {
@@ -901,7 +901,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function saveOrderToPastOrders(order) {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     if (!currentUser) return; // Don't save guest orders to past orders yet
 
     const pastOrders = JSON.parse(localStorage.getItem('pastOrders') || '[]');
@@ -918,7 +918,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (!adminWarning) return; // Not on admin orders page
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     
     // Check if user is admin
     if (!currentUser || currentUser.role !== 'admin') {
@@ -1160,7 +1160,7 @@ async function cancelOrder(orderId, email) {
 document.addEventListener('DOMContentLoaded', function() {
     // Show 'View Past Orders' button in cart when logged in
     const viewPastBtn = document.getElementById('view-past-orders');
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     if (viewPastBtn) {
         if (currentUser && currentUser.email) {
             viewPastBtn.classList.remove('hidden');
@@ -1178,7 +1178,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function renderPastOrders(container) {
     container.innerHTML = '<p class="muted">Loading your past orders...</p>';
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     if (!currentUser || !currentUser.email) {
         container.innerHTML = '<p class="muted">Please log in to view your past orders.</p>';
         return;
@@ -1218,7 +1218,7 @@ async function renderPastOrders(container) {
 
 function renderOrdersList(container, orders) {
     container.innerHTML = '';
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
     const now = new Date();
     orders.forEach(order => {
         // Don't show cancelled orders to users
