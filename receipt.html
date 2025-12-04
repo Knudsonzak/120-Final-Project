@@ -9,15 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image" href="Images/logo.png">
-    <title>Scheduled Orders - AMBROSIA Admin</title>
+    <title>Receipt - AMBROSIA</title>
 </head>
-<body class="admin-orders-page">
+<body class="receipt-page">
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
                 <div class="logo-border">
                     <span class="logo-text"><img src="/Images/logo.png" alt=""></span>
-                    
                     <span class="logo-text"><img src="/Images/name.png" alt=""></span>
                 </div>
             </div>
@@ -50,26 +49,63 @@
 
     <div class="hero">
         <div class="checkout-head">
-            <h2>SCHEDULED ORDERS</h2>
+            <h2>ORDER RECEIPT</h2>
         </div>
 
-        <div class="admin-orders-container">
-            <div class="admin-warning" id="admin-warning">
-                You must be logged in as an admin to view this page.
+        <div class="receipt-container">
+            <div class="success-badge">✓ Order Confirmed</div>
+
+            <div class="receipt-header">
+                <h1>AMBROSIA</h1>
+                <p>Thank you for your order!</p>
             </div>
 
-            <div class="orders-filter">
-                <button class="filter-btn active" data-status="all">All Orders</button>
-                <button class="filter-btn" data-status="scheduled">Scheduled</button>
-                <button class="filter-btn" data-status="confirmed">Confirmed</button>
-                <button class="filter-btn" data-status="cancelled">Cancelled</button>
-                <button class="filter-btn" data-status="completed">Completed</button>
+            <div class="order-id">
+                Order #<span id="receipt-order-id">Loading...</span>
             </div>
 
-            <div class="orders-grid" id="orders-grid">
-                <div class="empty-state">
-                    <p>Loading orders...</p>
+            <!-- Customer Info -->
+            <div class="receipt-section receipt-info">
+                <p><strong>Customer Name:</strong> <span id="receipt-name">Loading...</span></p>
+                <p><strong>Email:</strong> <span id="receipt-email">Loading...</span></p>
+                <p><strong>Order Date & Time:</strong> <span id="receipt-datetime">Loading...</span></p>
+                <p id="scheduled-info" style="display: none;"><strong>Scheduled For:</strong> <span id="receipt-scheduled-time">Loading...</span></p>
+            </div>
+
+            <!-- Items Ordered -->
+            <div class="receipt-section">
+                <h3>Items Ordered</h3>
+                <div class="receipt-items" id="receipt-items">
+                    Loading items...
                 </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="receipt-section">
+                <div class="receipt-row">
+                    <span>Subtotal:</span>
+                    <span id="receipt-subtotal">$0.00</span>
+                </div>
+                <div class="receipt-row">
+                    <span>Tip:</span>
+                    <span id="receipt-tip">$0.00</span>
+                </div>
+                <div class="receipt-row total">
+                    <span>Total:</span>
+                    <span id="receipt-total">$0.00</span>
+                </div>
+            </div>
+
+            <!-- Payment Info -->
+            <div class="receipt-section receipt-info">
+                <p><strong>Payment Method:</strong> <span id="receipt-payment">Loading...</span></p>
+                <p><strong>Status:</strong> <span id="receipt-status" style="color: #4CAF50; font-weight: bold;">Confirmed</span></p>
+            </div>
+
+            <!-- Actions -->
+            <div class="receipt-actions">
+                <button class="btn-print" onclick="window.print()">Print Receipt</button>
+                <a href="menu.html" class="btn-continue">Continue Shopping</a>
             </div>
         </div>
     </div>

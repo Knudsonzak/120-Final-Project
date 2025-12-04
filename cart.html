@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image" href="Images/logo.png">
-    <title>Checkout - AMBROSIA</title>
+    <title>Cart - AMBROSIA</title>
 </head>
 <body>
     <nav class="navbar">
@@ -32,11 +32,10 @@
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">HOME</a></li>
                 <li><a href="menu.html" class="nav-link">MENU</a></li>
-                <li><a href="specials.html" class="nav-link">SPECIALS</a></li>
                 <li class="auth-item login-item"><a href="log-in.html" class="nav-link">LOG IN</a></li>
                 <li class="auth-item signup-item"><a href="sign-up.html" class="nav-link">SIGN UP</a></li>
                 <li class="auth-item signout-item" style="display: none;"><a href="#" id="signout-btn" class="nav-link">SIGN OUT</a></li>
-                <li><a href="checkout.html" class="nav-link cart-icon active">
+                <li><a href="cart.html" class="nav-link cart-icon active">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="9" cy="21" r="1"></circle>
                         <circle cx="20" cy="21" r="1"></circle>
@@ -44,17 +43,29 @@
                     </svg>
                     <span class="cart-count">0</span>
                 </a></li>
-                <li><a href="past-orders.html" class="nav-link">PAST ORDERS</a></li>
+                
             </ul>
         </div>
-
-        <p>
-            cart
-        </p>
     </nav>
 
-    
-    
+    <div class="hero">
+        <div class="checkout-head">
+            <h2>YOUR CART</h2>
+        </div>
+        <div class="checkout-container">
+            <div id="cart-contents" class="cart-contents"></div>
+            <div class="cart-summary">
+                <div>Subtotal: <span id="cart-subtotal">$0.00</span></div>
+                <div class="cart-actions">
+                    <button id="clear-cart" class="clear-cart">Clear Cart</button>
+                    <a href="menu.html" class="menu-button">Continue Shopping</a>
+                    <button id="proceed-checkout" class="proceed-checkout">Proceed to Checkout</button>
+                    <a id="view-past-orders" class="menu-button hidden" href="past-orders.html">View Past Orders</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

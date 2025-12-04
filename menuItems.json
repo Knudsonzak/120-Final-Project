@@ -1,12 +1,5 @@
 [
   {
-    "id": 1764776706838,
-    "name": "BBQ Ribs",
-    "desc": "Slow-smoked pork ribs glazed with tangy barbecue sauce",
-    "price": 22,
-    "category": "mains"
-  },
-  {
     "id": 1764776728773,
     "name": "Mac & Cheese Bake",
     "desc": "Creamy macaroni with cheddar, baked until bubbly and golden",
@@ -84,10 +77,31 @@
     "category": "beverages"
   },
   {
-    "id": 1764781221622,
-    "name": "pepsi",
-    "desc": "soda",
-    "price": 50,
-    "category": "beverages"
+    "id": 1764869643113,
+    "name": "Cheeseburger Deluxe",
+    "desc": "Juicy beef patty with American cheese, lettuce, tomato, onion, and pickles",
+    "price": 17,
+    "category": "mains"
+  },
+  {
+    "id": 1764871011255,
+    "name": "Pepsi Muha",
+    "desc": "The ultimate muha flavor for those who are addicts",
+    "price": 67,
+    "category": "desserts"
+  },
+  {
+    "id": 1764873771068,
+    "name": "Soup Du Jour",
+    "desc": "Chef's daily selection of soup.",
+    "price": 8.5,
+    "category": "starters"
+  },
+  {
+    "id": 1764873802071,
+    "name": "Filet Mignon",
+    "desc": "8oz Filet topped with bone marrow butter with asparagus and mashed potatoes.",
+    "price": 44,
+    "category": "mains"
   }
 ]

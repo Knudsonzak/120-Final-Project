@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="icon" type="image" href="Images/logo.png">
-    <title>Specials - AMBROSIA</title>
+    <title>Past Orders - AMBROSIA</title>
 </head>
 <body>
     <nav class="navbar">
@@ -32,11 +32,10 @@
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">HOME</a></li>
                 <li><a href="menu.html" class="nav-link">MENU</a></li>
-                <li><a href="specials.html" class="nav-link">SPECIALS</a></li>
                 <li class="auth-item login-item"><a href="log-in.html" class="nav-link">LOG IN</a></li>
                 <li class="auth-item signup-item"><a href="sign-up.html" class="nav-link">SIGN UP</a></li>
                 <li class="auth-item signout-item" style="display: none;"><a href="#" id="signout-btn" class="nav-link">SIGN OUT</a></li>
-                <li><a href="checkout.html" class="nav-link cart-icon">
+                <li><a href="cart.html" class="nav-link cart-icon">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="9" cy="21" r="1"></circle>
                         <circle cx="20" cy="21" r="1"></circle>
@@ -44,7 +43,7 @@
                     </svg>
                     <span class="cart-count">0</span>
                 </a></li>
-                <li><a href="past-orders.html" class="nav-link active">PAST ORDERS</a></li>
+                
             </ul>
         </div>
     </nav>
@@ -52,6 +51,15 @@
     <section class="hero">
         <div class="hero-overlay"></div>
     </section>
+    
+    <main class="past-orders-page">
+        <div class="past-orders-wrapper">
+            <h2>Past Orders</h2>
+            <div id="past-orders-container">
+                <p class="muted">Loading your past orders...</p>
+            </div>
+        </div>
+    </main>
     
     <script src="script.js"></script>
 </body>

@@ -40,7 +40,6 @@ A full-featured restaurant website with user authentication, dynamic menu manage
 120-Final-Project/
 ├── index.html          # Homepage
 ├── menu.html           # Menu page with filtering
-├── specials.html       # Specials page
 ├── checkout.html       # Shopping cart and checkout
 ├── log-in.html         # Login page
 ├── sign-up.html        # Sign up page
