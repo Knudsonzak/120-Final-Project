@@ -16,5 +16,17 @@
     "email": "jscheurer5800@stevenscollege.edu",
     "password": "678910",
     "role": "user"
+  },
+  {
+    "name": "JackGrocki",
+    "email": "JackGrocki@outlook.com",
+    "password": "CSET",
+    "role": "user"
+  },
+  {
+    "name": "example",
+    "email": "example@gmail.com",
+    "password": "123",
+    "role": "user"
   }
 ]

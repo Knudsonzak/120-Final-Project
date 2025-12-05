@@ -41,16 +41,19 @@ if (signupForm) {
             if (!response.ok) {
                 throw new Error(data.message || 'Signup failed');
             }
-        errorDiv.textContent = 'Account created successfully! Redirecting to login...';
-        errorDiv.style.color = '#4CAF50';
-        errorDiv.style.marginTop = '1rem';
-        
-        // Redirect to login page 
-        setTimeout(() => {
-            window.location.href = 'log-in.html';
-        }, 2000);
+            
+            // Show success message
+            errorDiv.textContent = 'Account created successfully! Redirecting to login...';
+            errorDiv.style.color = '#4CAF50';
+            errorDiv.style.marginTop = '1rem';
+            
+            // Redirect to login page 
+            setTimeout(() => {
+                window.location.href = 'log-in.html';
+            }, 2000);
         })
         .catch(err => {
+            console.error('Signup error:', err);
             errorDiv.textContent = err.message;
             errorDiv.style.color = '#ff6b6b';
             errorDiv.style.marginTop = '1rem';
@@ -398,7 +401,6 @@ function isAdmin() {
 /* Add Menu Item */
 document.addEventListener('click', e => {
     if (e.target.id === 'add-menu-item-btn') {
-
         const newItem = {
             id: Date.now(),
             name: document.getElementById("new-item-name").value,
@@ -412,23 +414,69 @@ document.addEventListener('click', e => {
             return;
         }
 
-        fetch(`${API_URL}/saveMenuItem`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newItem)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data.message);
-            loadMenu();
+        const fileInput = document.getElementById('new-item-image');
+        const file = fileInput && fileInput.files && fileInput.files[0];
 
-            /* Clear form */
-            document.getElementById("new-item-name").value = "";
-            document.getElementById("new-item-desc").value = "";
-            document.getElementById("new-item-price").value = "";
-            document.getElementById("new-item-category").value = "starters";
-        })
-        .catch(error => console.error("Error adding menu item:", error));
+        function sendItem(payload) {
+            fetch(`${API_URL}/saveMenuItem`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+                loadMenu();
+
+                /* Clear form */
+                document.getElementById("new-item-name").value = "";
+                document.getElementById("new-item-desc").value = "";
+                document.getElementById("new-item-price").value = "";
+                document.getElementById("new-item-category").value = "starters";
+                if (fileInput) fileInput.value = '';
+            })
+            .catch(error => console.error("Error adding menu item:", error));
+        }
+
+        function compressImage(file, callback) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Resize to max 400px width while maintaining aspect ratio
+                    const maxWidth = 400;
+                    const scale = Math.min(1, maxWidth / img.width);
+                    canvas.width = img.width * scale;
+                    canvas.height = img.height * scale;
+                    
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    // Convert to JPEG with 0.7 quality for smaller file size
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                    callback(compressedDataUrl);
+                };
+                img.src = e.target.result;
+            };
+            reader.onerror = function(err) {
+                console.error('Error reading image file', err);
+                callback(null);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        if (file) {
+            compressImage(file, function(compressedImage) {
+                if (compressedImage) {
+                    newItem.image = compressedImage;
+                }
+                sendItem(newItem);
+            });
+        } else {
+            sendItem(newItem);
+        }
     }
 });
 /* Delete Menu Item */
@@ -472,14 +520,18 @@ function loadMenu(category = "all") {
             
             filtered.forEach((item, index) => {
             menuContainer.innerHTML += `
-                <div class="item">
-                    <h4>${item.name}</h4>
-                    <p>${item.desc}</p>
-                    <span class="price">$${item.price.toFixed(2)}</span>
-
-                    ${isAdmin() ? `<button class="delete-btn" data-id="${item.id}"> 🗑 Delete</button>`
-                    :
-                    `<button class="add-cart-btn" data-name="${item.name}" data-desc="${item.desc}" data-price="${item.price.toFixed(2)}">Add to Cart</button>`}
+                <div class="item ${item.image ? 'has-image' : ''}">
+                    ${item.image ? `<div class="item-image"><img src="${item.image}" alt="${item.name}"></div>` : ''}
+                    <div class="item-content">
+                        <h4>${item.name}</h4>
+                        <p>${item.desc}</p>
+                        <div class="item-footer">
+                            <span class="price">$${item.price.toFixed(2)}</span>
+                            ${isAdmin() ? `<button class="delete-btn" data-id="${item.id}"> 🗑 Delete</button>`
+                            :
+                            `<button class="add-cart-btn" data-name="${item.name}" data-desc="${item.desc}" data-price="${item.price.toFixed(2)}">Add to Cart</button>`}
+                        </div>
+                    </div>
                 </div>
             `;
             });
@@ -497,6 +549,7 @@ function loadMenu(category = "all") {
                             <option value="desserts">Desserts</option>
                             <option value="beverages">Beverages</option>
                         </select>
+                        <input type="file" id="new-item-image" accept="image/*" />
                         <button id="add-menu-item-btn">Add Item</button>
                     </div>
                 `;

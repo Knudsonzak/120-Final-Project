@@ -162,5 +162,111 @@
     "scheduledTime": null,
     "orderDate": "2025-12-04T20:45:01.205Z",
     "status": "confirmed"
+  },
+  {
+    "id": 1764948732769,
+    "email": "zakknudson6@gmail.com",
+    "name": "Zak Knudson",
+    "items": [
+      {
+        "name": "Craft Beer Selection",
+        "desc": "Local brews on tap",
+        "price": "$5.00",
+        "qty": 1
+      },
+      {
+        "name": "Fountain sodas",
+        "desc": "Coke, Diet Coke, Root Beer, Dr. Pepper, Sprite",
+        "price": "$2.50",
+        "qty": 1
+      },
+      {
+        "name": "Milkshakes",
+        "desc": "Chocolate, vanilla, or strawberry, topped with whipped cream",
+        "price": "$7.00",
+        "qty": 1
+      }
+    ],
+    "subtotal": 14.5,
+    "tip": 2.9000000000000004,
+    "total": 17.4,
+    "paymentMethod": "cash",
+    "scheduledTime": null,
+    "orderDate": "2025-12-05T15:32:12.769Z",
+    "status": "completed"
+  },
+  {
+    "id": 1764960869804,
+    "email": "jscheurer5800@stevenscollege.edu",
+    "name": "Jared Scheurer",
+    "items": [
+      {
+        "name": "Basil Garlic Brschetta",
+        "desc": "Crisp toasted slices of baguette topped with garlic, tomatoes, basil, a drizzle of olive oil, and a hint of sea salt.",
+        "price": "$14.00",
+        "qty": 1
+      },
+      {
+        "name": "Spicy Cauliflower Bites",
+        "desc": "Crispy cauliflower florets tossed in a spicy buffalo sauce, served with a side of cooling ranch dip.",
+        "price": "$22.00",
+        "qty": 1
+      },
+      {
+        "name": "Caprese Salad Skewers",
+        "desc": "Fresh mozzarella, cherry tomatoes, and basil leaves drizzled with balsamic glaze.",
+        "price": "$18.00",
+        "qty": 1
+      },
+      {
+        "name": "Hot Spiced Chai Latte",
+        "desc": "A warm and comforting blend of black tea, aromatic spices, steamed milk, and a touch of honey or sugar.",
+        "price": "$8.00",
+        "qty": 1
+      },
+      {
+        "name": "Chocolate Lava Cake",
+        "desc": "Warm chocolate cake with a gooey molten center, served with vanilla ice cream and strawberries.",
+        "price": "$14.00",
+        "qty": 1
+      },
+      {
+        "name": "Classic Tiramisu",
+        "desc": "Traditional Italian dessert with layers of coffee-soaked ladyfingers and mascarpone cream.",
+        "price": "$14.00",
+        "qty": 1
+      },
+      {
+        "name": "Ambrosia Gold-Flaked Tomahawk Steak",
+        "desc": "The true Food of Gods; a divine tomahawk steak adorned with edible gold flakes, grilled to perfection and served with a side of herb-spiced potato slices and seasonal vegetables straight from the garden.",
+        "price": "$800.00",
+        "qty": 1
+      },
+      {
+        "name": "Garlic Herb Shrimp Skewers",
+        "desc": "15 juicy shrimp marinated in a blend of garlic, herbs, and olive oil, grilled to perfection and served on skewers.",
+        "price": "$24.00",
+        "qty": 1
+      },
+      {
+        "name": "Stuffed Mushroom Caps",
+        "desc": "Mushroom caps filled with a savory mixture of cheeses, herbs, and breadcrumbs, baked to golden perfection.",
+        "price": "$26.00",
+        "qty": 1
+      },
+      {
+        "name": "Midnight Espresso Duo",
+        "desc": "A bold blend of dark roast espresso paired with a velvety chocolate mousse.",
+        "price": "$6.00",
+        "qty": 1
+      }
+    ],
+    "subtotal": 946,
+    "tip": 94.60000000000001,
+    "total": 1040.6,
+    "paymentMethod": "cash",
+    "scheduledTime": null,
+    "orderDate": "2025-12-05T18:54:29.804Z",
+    "status": "confirmed"
   }
 ]
