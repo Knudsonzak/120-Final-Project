@@ -268,5 +268,57 @@
     "scheduledTime": null,
     "orderDate": "2025-12-05T18:54:29.804Z",
     "status": "confirmed"
+  },
+  {
+    "id": 1764965124193,
+    "email": "jgrocki1337@stevenscollege.edu",
+    "name": "Jack Grocki",
+    "items": [
+      {
+        "name": "Ambrosia Gold-Flaked Tomahawk Steak",
+        "desc": "The true Food of Gods; a divine tomahawk steak adorned with edible gold flakes, grilled to perfection and served with a side of herb-spiced potato slices and seasonal vegetables straight from the garden.",
+        "price": "$800.00",
+        "qty": 8
+      }
+    ],
+    "subtotal": 6400,
+    "tip": 6400,
+    "total": 12800,
+    "paymentMethod": "credit_card",
+    "scheduledTime": "2025-12-11T16:00",
+    "orderDate": "2025-12-05T20:05:24.193Z",
+    "status": "confirmed"
+  },
+  {
+    "id": 1764967079990,
+    "email": "zakknudson6@gmail.com",
+    "name": "Zak Knudson",
+    "items": [
+      {
+        "name": "Basil Garlic Brschetta",
+        "desc": "Crisp toasted slices of baguette topped with garlic, tomatoes, basil, a drizzle of olive oil, and a hint of sea salt.",
+        "price": "$14.00",
+        "qty": 2
+      },
+      {
+        "name": "Ribeye Steak",
+        "desc": "Juicy ribeye steak grilled to perfection, served with mashed potatoes and broccoli.",
+        "price": "$45.00",
+        "qty": 1
+      },
+      {
+        "name": "Ambrosia Gold-Flaked Tomahawk Steak",
+        "desc": "The true Food of Gods; a divine tomahawk steak adorned with edible gold flakes, grilled to perfection and served with a side of herb-spiced potato slices and seasonal vegetables straight from the garden.",
+        "price": "$800.00",
+        "qty": 1
+      }
+    ],
+    "subtotal": 873,
+    "tip": 130.95,
+    "total": 1003.95,
+    "paymentMethod": "cash",
+    "scheduledTime": null,
+    "orderDate": "2025-12-05T20:37:59.990Z",
+    "status": "confirmed"
   }
 ]

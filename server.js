@@ -106,7 +106,10 @@ app.post('/signup', (req, res) => {
     console.log('Total users now:', users.length);
 
     const { password: _, ...safeUser } = newUser;
-        res.json({ message: 'Account created successfully.', user: safeUser });
+        res.status(201).json({
+            message: 'Account created successfully.',
+            user: safeUser
+        });
 });
 
 // Log In

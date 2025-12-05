@@ -28,5 +28,11 @@
     "email": "example@gmail.com",
     "password": "123",
     "role": "user"
+  },
+  {
+    "name": "Jack Grocki",
+    "email": "jgrocki1337@stevenscollege.edu",
+    "password": "password",
+    "role": "user"
   }
 ]

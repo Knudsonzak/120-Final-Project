@@ -37,7 +37,13 @@ if (signupForm) {
             body: JSON.stringify({ name, email, password })
         })
         .then(async response => {
-            const data = await response.json();
+            let data;
+            try {
+                data = await response.json();
+            }
+            catch {
+                throw new Error('Invalid JSON response from server.');
+            }
             if (!response.ok) {
                 throw new Error(data.message || 'Signup failed');
             }
@@ -141,15 +147,21 @@ function updateNavigation() {
         if (signupItem) signupItem.style.display = 'none';
         if (signoutItem) signoutItem.style.display = 'block';
         if (cartIcon) cartIcon.style.display = 'block';
+
         const viewPastBtn = document.getElementById('view-past-orders');
+
         if (viewPastBtn) viewPastBtn.classList.remove('hidden');
-    } else {
+    } 
+    else 
+        {
         // User is not logged in 
         if (loginItem) loginItem.style.display = 'block';
         if (signupItem) signupItem.style.display = 'block';
         if (signoutItem) signoutItem.style.display = 'none';
         if (cartIcon) cartIcon.style.display = 'block';
+
         const viewPastBtn = document.getElementById('view-past-orders');
+
         if (viewPastBtn) viewPastBtn.classList.add('hidden');
     }
 
@@ -196,7 +208,6 @@ if (signoutBtn) {
         window.location.href = 'index.html';
     });
 }
-updateNavigation();
 
 // Cart functionality
 function getCart() {
@@ -353,14 +364,34 @@ function renderCart() {
         
         const name = document.createElement('div');
         name.className = 'cart-name';
-        name.textContent = `${it.name} x${it.qty || 1}`;
+        name.textContent = it.name;
+        
+        const qtyInput = document.createElement('input');
+        qtyInput.className = 'qty-input';
+        qtyInput.type = 'number';
+        qtyInput.min = '1';
+        qtyInput.value = it.qty || 1;
+        qtyInput.addEventListener('change', (e) => {
+            let newQty = parseInt(e.target.value);
+            if (isNaN(newQty) || newQty < 1) {
+                newQty = 1;
+                e.target.value = 1;
+            }
+            getCart().then(current => {
+                current[idx].qty = newQty;
+                saveCart(current);
+                renderCart();
+                updateCartCount();
+            });
+        });
         
         const price = document.createElement('div');
         price.className = 'cart-price';
         const pMatch = (it.price || '').match(/\$?([0-9]+(?:\.[0-9]+)?)/);
         const pVal = pMatch ? parseFloat(pMatch[1]) : 0;
-        total += (pVal * (it.qty || 1));
-        price.textContent = it.price;
+        const itemTotal = pVal * (it.qty || 1);
+        total += itemTotal;
+        price.textContent = '$' + itemTotal.toFixed(2);
 
         const remove = document.createElement('button');
         remove.className = 'cart-remove';
@@ -376,6 +407,7 @@ function renderCart() {
         });
 
         row.appendChild(name);
+        row.appendChild(qtyInput);
         row.appendChild(price);
         row.appendChild(remove);
         container.appendChild(row);
@@ -502,7 +534,7 @@ document.addEventListener('click', e => {
 
 /* Menu Item List */
 /* Load Menu Items */
-function loadMenu(category = "all") {
+function loadMenu(category = "starters") {
     fetch("menuItems.json?cacheBust=" + new Date().getTime())
         .then(response => response.json())
         .then(menuItems => {
@@ -1346,3 +1378,7 @@ async function deleteOrder(orderId) {
         alert('Error deleting order');
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateNavigation();
+});
