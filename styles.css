@@ -1725,7 +1725,7 @@ body {
 .admin-orders-page .hero {
     background: url(Images/menu-background.jpg) center/cover no-repeat, linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.9));
     background-blend-mode: overlay;
-    padding: 8rem 1rem 4rem;
+    padding: 6rem 1rem 4rem;
     min-height: 100vh;
     height: auto;
     display: block;
@@ -1737,6 +1737,7 @@ body {
     margin: 0 auto;
     padding: 2rem;
     padding-top: 1rem;
+    max-height: 60vh;
 }
 
 .admin-orders-container h1 {
@@ -1753,7 +1754,7 @@ body {
     background: rgba(255, 243, 205, 0.15);
     border-left: 4px solid var(--primary-color);
     padding: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     border-radius: 4px;
     backdrop-filter: blur(10px);
 }
