@@ -1,10 +1,9 @@
 # AMBROSIA RESTAURANT WEBSITE
 
-Ambrosia is a student-built restaurant web application that demonstrates a full-stack workflow: a static front-end with dynamic behavior (menu, cart, checkout) backed by a simple Node/Express JSON-file API. The project and requirements are documented in `SRS Doc.pdf` (see that file for full scope, team roles, and design decisions).
+Ambrosia is a student-built restaurant web application that demonstrates a full-stack workflow: a static front-end with dynamic behavior (menu, cart, checkout) backed by a simple Node/Express JSON-file API. The project and requirements are documented in `SRS Doc.pdf` (see that file for full scope, team roles, and design decisions). Rendered utilizing `Render.com`.
 
 Team Ctrl+Alt+Elite (summary - see `SRS Doc.pdf` for full details):
-- Zak Knudson — Project lead / backend & integration
-- Team Members — additional contributors and role breakdown are documented inside `SRS Doc.pdf`.
+- Contributors and role breakdown are documented inside `SRS Doc.pdf`.
 
 ## Features
 
@@ -109,6 +108,7 @@ Team: Ctrl+Alt+Elite
 
 - Zak Knudson — https://github.com/Knudsonzak
 - Jared Scheurer — https://github.com/jared-programming
+- Jackson Grocki - https://github.com/JackGrocki
 
 See `SRS Doc.pdf` for full team roles and responsibilities.
 
