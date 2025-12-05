@@ -384,4 +384,68 @@
     .error-message {
         font-size: 0.85rem;
     }
+
+    /* Cart page - small screens: stack rows and make buttons full-width */
+    .cart-page .checkout-container {
+        padding: 1rem 0.75rem;
+        max-width: 94%;
+        margin: 0.75rem auto 0;
+    }
+
+    .cart-page .cart-contents {
+        gap: 0.6rem;
+    }
+
+    .cart-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .cart-name {
+        font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .cart-price {
+        margin-left: 0;
+        margin-top: 0.35rem;
+        font-size: 1rem;
+    }
+
+    .cart-remove {
+        padding: 0.45rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .cart-page .cart-summary {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+        padding-top: 0.75rem;
+    }
+
+    .cart-actions {
+        flex-direction: column;
+        gap: 0.6rem;
+        width: 100%;
+    }
+
+    .clear-cart,
+    .proceed-checkout,
+    .cart-actions .menu-button {
+        width: 100%;
+        padding: 0.9rem;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .cart-count {
+        top: -6px;
+        right: -6px;
+        width: 16px;
+        height: 16px;
+        font-size: 0.65rem;
+    }
 }

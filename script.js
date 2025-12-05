@@ -164,6 +164,15 @@ function updateNavigation() {
                 menuLink.after(ordersLi);
             }
         }
+        
+        // If we're on admin-orders.html, add active class to the ORDERS link
+        const isAdminOrdersPage = window.location.pathname.includes('admin-orders.html');
+        if (isAdminOrdersPage) {
+            const ordersLink = navMenu?.querySelector('a[href="admin-orders.html"]');
+            if (ordersLink) {
+                ordersLink.classList.add('active');
+            }
+        }
     } else {
         // Remove admin orders link if user is not admin
         const adminOrdersLink = document.querySelector('.admin-orders-link');
