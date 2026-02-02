@@ -101,6 +101,28 @@ Alternative (no backend):
 - Frontend: HTML5, CSS3, JavaScript (ES6+)
 - Backend: Node.js, Express.js
 - Storage: JSON files (users, menu items, carts, orders)
+- Security: bcrypt for password hashing
+
+## Security
+
+### Password Encryption
+User passwords are securely stored using **bcrypt** hashing:
+- **New signups**: Passwords are automatically hashed before being saved to `users.json`
+- **Login**: Passwords are verified using bcrypt's secure comparison function
+- **Password hashing**: Uses bcrypt with 10 salt rounds, making passwords computationally expensive to crack
+- **No plain-text storage**: Original passwords cannot be recovered from the hash
+
+### Migrating Existing Passwords
+If you have plain-text passwords in `users.json`, run the migration script:
+```powershell
+node migrate-passwords.js
+```
+This will:
+- Hash all plain-text passwords in the database
+- Skip already-hashed passwords (safe to run multiple times)
+- Preserve user login functionality with their original passwords
+
+**Note**: After migration, users can still log in with their original passwords, but the stored values are now secure bcrypt hashes.
 
 ## Authors & Team
 

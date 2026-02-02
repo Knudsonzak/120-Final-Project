@@ -3,6 +3,7 @@ const path = require('path');
 const app = express();
 const fs = require('fs');
 const cors = require('cors');
+const bcrypt = require('bcrypt');
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
@@ -78,10 +79,10 @@ app.post('/deleteMenuItem', (req, res) => {
 });
 
 // Sign Up
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
 
-    console.log('Signup attempt:', { name, email, password });
+    console.log('Signup attempt:', { name, email });
 
     if (!name || !email || !password) {
         return res.status(400).json({ message: 'Name, email, and password are required.'});
@@ -92,10 +93,14 @@ app.post('/signup', (req, res) => {
         return res.status(409).json({ message: 'Email already registered.'});
     }
     
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    
     const newUser = {
         name,
         email,
-        password,
+        password: hashedPassword,
         role: 'user'
     };
     
@@ -113,22 +118,29 @@ app.post('/signup', (req, res) => {
 });
 
 // Log In
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
     try {
         const { nameOrEmail, password } = req.body;
 
-        console.log('Login attempt:', { nameOrEmail, password });
+        console.log('Login attempt:', { nameOrEmail });
         
+        // Find user by email or name
         const user = users.find(u => {
             const emailMatch = u.email && u.email.toLowerCase() === (nameOrEmail || '').toLowerCase();
             const nameMatch = u.name && u.name.toLowerCase() === (nameOrEmail || '').toLowerCase();
-            const passwordMatch = u.password === password;
-            return (emailMatch || nameMatch) && passwordMatch;
+            return emailMatch || nameMatch;
         });
 
-        console.log('Found user:', user ? user.name : 'none');
-
         if (!user) {
+            return res.status(401).json({ message: 'Invalid username/email or password.'});
+        }
+
+        // Verify password using bcrypt
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        
+        console.log('Found user:', user.name, '| Password match:', passwordMatch);
+
+        if (!passwordMatch) {
             return res.status(401).json({ message: 'Invalid username/email or password.'});
         }
 

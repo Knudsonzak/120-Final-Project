@@ -2,43 +2,43 @@
   {
     "name": "Admin",
     "email": "admin@ambrosia.com",
-    "password": "admin123",
+    "password": "$2b$10$2tEGctYYPt9xWWmY4ykKJe65uy4a8GoSfFPUnOEX.gxt9D5XapcV6",
     "role": "admin"
   },
   {
     "name": "Zak Knudson",
     "email": "zakknudson6@gmail.com",
-    "password": "12345",
+    "password": "$2b$10$KlS3abX2ZxrQWKBP/zZAH.baDB4uFCa6vwNi0Uvk8PM5u.Jflx.oq",
     "role": "user"
   },
   {
     "name": "Jared Scheurer",
     "email": "jscheurer5800@stevenscollege.edu",
-    "password": "678910",
+    "password": "$2b$10$5VIOI2B7Vad1/5MGjH0/mO7iqsLhI/9TITtv80QFyRS37H160obJS",
     "role": "user"
   },
   {
     "name": "JackGrocki",
     "email": "JackGrocki@outlook.com",
-    "password": "CSET",
+    "password": "$2b$10$Lfgei921LXFywu189FKHhuwfKoH26c0VdRbYb28W3fdRridkAHEkS",
     "role": "user"
   },
   {
     "name": "example",
     "email": "example@gmail.com",
-    "password": "123",
+    "password": "$2b$10$ECYBjDAqyoZcGZpKEYpWwOd9MQ1eDTEN3D/wLbMxP1laTTR2VHpsK",
     "role": "user"
   },
   {
     "name": "Jack Grocki",
     "email": "jgrocki1337@stevenscollege.edu",
-    "password": "password",
+    "password": "$2b$10$JgYXsU6OytNAvYO76p31/./0h0yhEYwpDB5ItR.4/OmMGoJy8sTRO",
     "role": "user"
   },
   {
     "name": "Test",
     "email": "test@test.test",
-    "password": "test",
+    "password": "$2b$10$yBg1HIhir095xSQCWfKRFeikrFjAUnmMlc5fFYcP7oJQ00Eh3Ocyu",
     "role": "user"
   }
 ]

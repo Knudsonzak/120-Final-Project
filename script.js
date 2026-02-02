@@ -509,6 +509,7 @@ document.addEventListener('click', e => {
         } else {
             sendItem(newItem);
         }
+
     }
 });
 /* Delete Menu Item */
@@ -800,6 +801,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing...';
 
+            
         try {
             // Submit order to server
             const response = await fetch(`${API_URL}/checkout`, {
