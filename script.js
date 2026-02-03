@@ -24,11 +24,6 @@ if (signupForm) {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const errorDiv = document.getElementById('signup-error');
-        
-        // Clear localStorage !!!!!REMOVE AFTER TESTING!!!!!
-        //localStorage.clear();
-        
-        //  success message
         errorDiv.textContent = '';
 
         fetch(`${API_URL}/signup`, {
