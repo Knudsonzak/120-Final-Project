@@ -554,4 +554,140 @@
     .item.has-image .price {
         font-size: 1.1rem;
     }
+
+    /* Past Orders Page Mobile Styles */
+    .past-orders-page .page-wrap {
+        margin: 5rem 0.5rem 2rem;
+        padding: 1rem;
+    }
+
+    .past-orders-page h2 {
+        font-size: 1.8rem;
+        text-align: center;
+    }
+
+    .past-orders-container .order-card {
+        padding: 0.875rem;
+        margin-bottom: 0.875rem;
+    }
+
+    .past-orders-container .order-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .past-orders-container .order-actions {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 0.75rem;
+    }
+
+    .past-orders-container .action-btn {
+        width: 100%;
+        padding: 0.75rem;
+        text-align: center;
+    }
+
+    /* Admin Orders Page Mobile Styles */
+    .admin-orders-page .hero {
+        padding: 5rem 0.5rem 2rem;
+    }
+
+    .admin-orders-container {
+        padding: 1rem 0.5rem;
+        max-height: none;
+    }
+
+    .admin-orders-container h1 {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+    }
+
+    .orders-filter {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .filter-btn {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .orders-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-height: none;
+        padding-right: 0;
+    }
+
+    .order-card {
+        padding: 1rem;
+    }
+
+    .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .order-customer {
+        padding: 0.75rem;
+    }
+
+    .order-customer h3 {
+        font-size: 0.95rem;
+    }
+
+    .order-customer p {
+        font-size: 0.85rem;
+    }
+
+    .order-items h3 {
+        font-size: 0.95rem;
+    }
+
+    .order-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+        padding: 0.5rem 0;
+        font-size: 0.9rem;
+    }
+
+    .order-totals {
+        flex-direction: column;
+        padding: 0.75rem;
+    }
+
+    .total-item {
+        width: 100%;
+        justify-content: space-between;
+        margin-right: 0 !important;
+    }
+
+    .order-scheduled {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .order-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .action-btn {
+        width: 100%;
+        padding: 0.75rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .admin-warning {
+        padding: 0.875rem;
+        font-size: 0.9rem;
+    }
 }
